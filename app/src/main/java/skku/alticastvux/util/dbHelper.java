@@ -9,6 +9,7 @@ import android.util.Log;
 
 import skku.alticastvux.model.VideoInfo;
 
+
 /**
  * Created by horoyoii on 2018. 7. 25..
  */
@@ -85,9 +86,6 @@ public class dbHelper extends SQLiteOpenHelper {
         }else{
             return false;
         }
-
-
-
     }
 
     // 테이블 drop
@@ -99,6 +97,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
 
     // @@북마크에 ## 삭제
+
     public boolean delete(String cName, VideoInfo videoInfo) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cur = db.rawQuery("select * from "+TABLE_NAME+" WHERE _id="+videoInfo.getId()+" AND "+cName+"='1'", null);

@@ -12,6 +12,7 @@ import skku.alticastvux.app.SKKUVuxApp;
 import skku.alticastvux.model.BookMarkList;
 import skku.alticastvux.model.VideoInfo;
 
+
 /**
  * Created by horoyoii on 2018. 7. 25..
  */
@@ -52,6 +53,7 @@ public class BookMarkUtil {
             for(VideoInfo videoInfo : list){
                 helper.AddBookMark(DEFAULT_BOOK_MARK, videoInfo);
             }
+
         }
     }
 
@@ -62,6 +64,7 @@ public class BookMarkUtil {
         if (!helper.AddColumn(cName)) {
             Toast.makeText(SKKUVuxApp.getInstance(), "이미 존재하는 목록이름", 0).show();
             return false;
+
         }
 
         String json = SharedPreferencesUtil.getString("BookMarkList", "");
@@ -94,7 +97,6 @@ public class BookMarkUtil {
 
     // 북마크에 @@파일을 추가
     public static boolean AddVideoToBookMark(String cName, VideoInfo videoInfo){
-
         String json = SharedPreferencesUtil.getString("BookMarkList", "");
         BookMarkList MyObject = gson.fromJson(json, BookMarkList.class);
 

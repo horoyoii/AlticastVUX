@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity {
         checkPermissions();
 
         BookMarkUtil.DBInit(Util.getAllVideos());
+
     }
 
     @Override

@@ -216,6 +216,7 @@ public class MainFragment extends BrowseFragment {
 
             @Override
             public void onClick(View view) {
+
                 /*
                 For Test Zone
                  */
@@ -253,12 +254,6 @@ public class MainFragment extends BrowseFragment {
 //                if(BookMarkUtil.AddVideoToBookMark("미분류",Util.getAllVideos().get(2))){
 //                    refresh();
 //                }
-
-
-
-
-
-
 
             }
         });
