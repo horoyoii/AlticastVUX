@@ -34,6 +34,7 @@ import skku.alticastvux.activity.base.BaseActivity;
 import skku.alticastvux.model.VideoInfo;
 import skku.alticastvux.util.AudioFromVideo;
 import skku.alticastvux.util.AudioUtil;
+import skku.alticastvux.util.BookMarkUtil;
 import skku.alticastvux.util.Util;
 import skku.alticastvux.voiceable.ASREventController;
 
@@ -50,6 +51,10 @@ public class MainActivity extends BaseActivity {
         ArrayList<VideoInfo> videos = Util.getAllVideos();
         ASREventController.getInstance().createASRContext(getApplicationContext());
         checkPermissions();
+
+        BookMarkUtil.DBInit(Util.getAllVideos());
+
+
     }
 
     @Override

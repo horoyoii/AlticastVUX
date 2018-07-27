@@ -14,6 +14,7 @@
 
 package skku.alticastvux.fragment;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
@@ -64,6 +65,7 @@ import skku.alticastvux.model.VideoInfo;
 import skku.alticastvux.presenter.CardInfo;
 import skku.alticastvux.presenter.CardPresenter;
 import skku.alticastvux.presenter.CardPresenterSelector;
+import skku.alticastvux.util.BookMarkUtil;
 import skku.alticastvux.util.Util;
 import skku.alticastvux.util.VideoBackgroundManager;
 import skku.alticastvux.widget.LiveCardView;
@@ -126,19 +128,24 @@ public class MainFragment extends BrowseFragment {
         mRowsAdapter = new ArrayObjectAdapter(new ListRowPresenter());
         CardPresenterSelector cardPresenterSelector = new CardPresenterSelector(getActivity());
 
-        int i;
-        for (i = 0; i < NUM_ROWS; i++) {
-            if (i != 0) {
-                Collections.shuffle(videoInfos);
-            }
+        ArrayList<String> bmList = BookMarkUtil.getAllBookMarkList();
+
+
+        int i = 0;
+        int j =0;
+        for (String cName : bmList) {
             ArrayObjectAdapter listRowAdapter = new ArrayObjectAdapter(cardPresenterSelector);
-            for (int j = 0; j < NUM_COLS; j++) {
-                CardInfo cardInfo = new CardInfo(i, j, 0);
-                cardInfo.putObject("videoInfo", videoInfos.get(j % videoInfos.size()));
+            ArrayList<VideoInfo> vList = BookMarkUtil.getVideosFromBookMark(cName);
+
+            for (VideoInfo videoInfo : vList) {
+                CardInfo cardInfo = new CardInfo(i, j++, 0);
+                cardInfo.putObject("videoInfo", videoInfo);
                 listRowAdapter.add(cardInfo);
             }
-            HeaderItem header = new HeaderItem(i, "test " + i);
+            HeaderItem header = new HeaderItem(i, cName);
             mRowsAdapter.add(new ListRow(header, listRowAdapter));
+            j=0;
+            i++;
         }
 
         HeaderItem gridHeader = new HeaderItem(i, "PREFERENCES");
@@ -211,6 +218,20 @@ public class MainFragment extends BrowseFragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Implement your own in-app search", Toast.LENGTH_LONG)
                         .show();
+                /* for test
+                BookMarkUtil.AddBookMark("예능");
+                BookMarkUtil.DeleteBookMark("예능");
+
+                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(2));
+                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(3));
+
+                BookMarkUtil.DeleteVideoFromBookMark("기본",Util.getAllVideos().get(3));
+
+                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(0));
+                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(1));
+                */
+                refresh();
+
             }
         });
 
@@ -326,4 +347,8 @@ public class MainFragment extends BrowseFragment {
         }
     }
 
+
+    private void refresh(){
+        loadRows();
+    }
 }
