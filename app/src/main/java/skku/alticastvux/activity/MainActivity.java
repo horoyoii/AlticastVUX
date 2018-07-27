@@ -53,8 +53,6 @@ public class MainActivity extends BaseActivity {
         checkPermissions();
 
         BookMarkUtil.DBInit(Util.getAllVideos());
-
-
     }
 
     @Override
@@ -112,9 +110,12 @@ public class MainActivity extends BaseActivity {
     public boolean receiveCommand(String pattern, String response, ArrayList<ClientAPI.Entity> entities) {
         Toast.makeText(this, response, 0).show();
         Log.e("AlticastVUX", "entites size : "+entities.size());
+
         for(int i = 0; i < entities.size(); i++) {
             Log.e("AlticastVUX", "entity : "+entities.get(i).getType()+" : "+entities.get(i).getValue().toString());
+
         }
+
         return false;
     }
 }

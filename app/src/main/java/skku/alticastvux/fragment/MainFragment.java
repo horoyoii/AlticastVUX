@@ -216,21 +216,49 @@ public class MainFragment extends BrowseFragment {
 
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Implement your own in-app search", Toast.LENGTH_LONG)
-                        .show();
-                /* for test
-                BookMarkUtil.AddBookMark("예능");
-                BookMarkUtil.DeleteBookMark("예능");
+                /*
+                For Test Zone
+                 */
+//                if(BookMarkUtil.AddVideoToBookMark("미분류",Util.getAllVideos().get(3))){
+//                    refresh();
+//                }
+//                BookMarkUtil.AddBookMark("예능");
+//                BookMarkUtil.AddBookMark("먹방");
 
-                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(2));
-                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(3));
+                //BookMarkUtil.DeleteBookMark("예능");
+//                if(BookMarkUtil.AddBookMark("감사")){
+//                    refresh();
+//                }
+//                if(BookMarkUtil.DeleteBookMark("미분류")){
+//
+//                }
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(2));
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(3));
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(4));
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(5));
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(6));
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(7));
+//                BookMarkUtil.AddVideoToBookMark("감사",Util.getAllVideos().get(8));
 
-                BookMarkUtil.DeleteVideoFromBookMark("기본",Util.getAllVideos().get(3));
+//                BookMarkUtil.AddBookMark("테스트1");
+//                BookMarkUtil.AddVideoToBookMark("테스트1",Util.getAllVideos().get(0));
+//                BookMarkUtil.AddVideoToBookMark("테스트1",Util.getAllVideos().get(1));
+//                BookMarkUtil.AddVideoToBookMark("테스트1",Util.getAllVideos().get(2));
 
-                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(0));
-                BookMarkUtil.AddVideoToBookMark("기본",Util.getAllVideos().get(1));
-                */
-                refresh();
+                //BookMarkUtil.DeleteVideoFromBookMark("테스트1", Util.getAllVideos().get(2));
+
+//                if(BookMarkUtil.AddBookMark("테스트1")){
+//                    refresh();
+//                }
+//                if(BookMarkUtil.AddVideoToBookMark("미분류",Util.getAllVideos().get(2))){
+//                    refresh();
+//                }
+
+
+
+
+
+
 
             }
         });

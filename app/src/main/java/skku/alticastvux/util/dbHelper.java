@@ -9,8 +9,13 @@ import android.util.Log;
 
 import skku.alticastvux.model.VideoInfo;
 
+/**
+ * Created by horoyoii on 2018. 7. 25..
+ */
+
+
 public class dbHelper extends SQLiteOpenHelper {
-    final static String TAG = "VideoManger";
+    final static String TAG = "DataBaseManage";
     final static String TABLE_NAME = "ALLVIDEO";
     Context context;
 
@@ -67,12 +72,20 @@ public class dbHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public void AddBookMark(String cName, VideoInfo videoInfo){
+    public boolean AddBookMark(String cName, VideoInfo videoInfo){
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "UPDATE "+TABLE_NAME+" SET "+cName+"=1 WHERE _id='"+videoInfo.getId()+"'";
-        Log.d(TAG, "북마크 추가");
-        db.execSQL(sql);
-        db.close();
+        Cursor cur = db.rawQuery("select * from "+TABLE_NAME+" WHERE _id="+videoInfo.getId()+" AND "+cName+"='0'", null);
+
+        if(cur.getCount() != 0){
+            String sql = "UPDATE "+TABLE_NAME+" SET "+cName+"=1 WHERE _id='"+videoInfo.getId()+"'";
+            Log.d(TAG, "북마크 추가");
+            db.execSQL(sql);
+            db.close();
+            return true;
+        }else{
+            return false;
+        }
+
 
 
     }
@@ -86,12 +99,18 @@ public class dbHelper extends SQLiteOpenHelper {
 
 
     // @@북마크에 ## 삭제
-    public void delete(String cName, VideoInfo videoInfo) {
+    public boolean delete(String cName, VideoInfo videoInfo) {
         SQLiteDatabase db = getWritableDatabase();
-        Log.d(TAG,"북마크에서 ##목록 삭제");
-        String sql = "UPDATE "+TABLE_NAME+" SET "+cName+"=0 WHERE _id='"+videoInfo.getId()+"'";
-        db.execSQL(sql);
-        db.close();
+        Cursor cur = db.rawQuery("select * from "+TABLE_NAME+" WHERE _id="+videoInfo.getId()+" AND "+cName+"='1'", null);
+
+        if(cur.getCount() != 0){
+            String sql = "UPDATE "+TABLE_NAME+" SET "+cName+"=0 WHERE _id='"+videoInfo.getId()+"'";
+            db.execSQL(sql);
+            db.close();
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
